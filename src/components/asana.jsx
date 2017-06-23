@@ -4,9 +4,8 @@ import AsanaDetail from './asanaDetail';
 
 const Asana = (props) => {
 
-const listAsansDetails = props.asana.detail.map((detail) =>
-      <AsanaDetail detail={detail} />
-  );
+const listAsansDetails = !props.asana.detail ? 'No details':props.asana.detail.map((detail) =><AsanaDetail detail={detail} /> )
+
 
   return (
     <div className="columns">
@@ -15,13 +14,13 @@ const listAsansDetails = props.asana.detail.map((detail) =>
           <a href='#' className="accordion-title">
             <div className = "media-object">
               <div className="media-object-section">
-                <img className="thumbnail" src={props.asana.image}/>
+                <img width = "200" height="200" className="thumbnail" src={props.asana.image}/>
               </div>
               <div className="media-object-section">
                 <h4>{props.asana.title}</h4>
-                <span className="primary label">Время {props.asana.duration}</span>
-                <span className="secondary label">Ширина ног {props.asana.footDistance}</span>
-                <span className="success label">Позиция ног {props.asana.footPosition}</span>
+                {!props.asana.duration ? '' : <span className="primary label">Время {props.asana.duration}</span>}
+                {!props.asana.footDistance ? '' : <span className="secondary label">Ширина ног {props.asana.footDistance}</span>}
+                {!props.asana.footPosition ? '' : <span className="success label">Позиция ног {props.asana.footPosition}</span>}
                 <h5>{props.asana.description}</h5>
               </div>
               </div>
@@ -33,13 +32,6 @@ const listAsansDetails = props.asana.detail.map((detail) =>
         </li>
       </ul>
     </div>
-    
-  //   <a href="#" className="accordion-title">Accordion 2</a>
-  //   <div className="accordion-content" data-tab-content>
-  //     <textarea></textarea>
-  //     <button className="button">I do nothing!</button>
-  //   </div>
-  // </li>
     )
 }
 

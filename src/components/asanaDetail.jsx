@@ -2,12 +2,11 @@ import React from 'react';
 
 const AsanaDetail = (props) => {
   return (
-    // <p>{props.detail.key}. {props.detail.description}</p>
 
     <div className="media-object">
       <div className="media-object-section">
       <div className="thumbnail">
-        <img src={props.detail.image} />
+        <img width = "180" height="180" src={props.detail.image} />
       </div>
       </div>
       <div className="media-object-section bottom">

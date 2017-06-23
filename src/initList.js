@@ -62,6 +62,14 @@ const asansList = [
             image: 'http://path-to-image'
           }
         ]
+      },
+      {
+        key: 3,
+        title: 'Саламба Сарвангасана 1',
+        footDistance: '',
+        footPosition: '',
+        description: 'Сарвангасана - мать всех асан',
+        image: 'https://s.hanuman.ru/files/imagecache/asana_block1/sarvangasana01.jpg'
       }
     ]
   }
