@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import initList from './initList';
 import AsansList from './containers/asansList';
+import Menu from './components/menu';
 
 const reducer = (state) => {
   return state;
