@@ -1,32 +1,20 @@
 import React from 'react';
 
 import AsanaDetail from './asanaDetail';
+import { addAsana } from '../actions';
 
 const Asana = (props) => {
 
-   const voice = (e) => {
-    //  e.preventDefault();
-     props.voice.speak(props.asana.title, {speaker: 'ermil', emotion: 'neutral', stopCallback: function() { console.log('Voice finished');
-    }})};
-    
-   //voice('Ну как дела') // Имя диктора.
-      
-      // Эмоции в голосе. 
-      
-      // Функция-обработчик, которая будет вызвана по завершении озвучивания.
-//       stopCallback: function () {
-//         console.log("Озвучивание текста завершено.");
-//       }
-//   }
-// )
-
 const listAsansDetails = !props.asana.detail ? 'No details' : props.asana.detail.map((detail) =><AsanaDetail detail={detail} /> )
 
+const testAdd = () => {
+  addAsana();
+}
 
   return (
     <div className="row">
       <div className="small-1 columns">
-        <button className="button" onClick={voice}>Произнести</button>
+        <button className="button" onClick={testAdd}>Произнести</button>
       </div>
       <div className="small-11 columns">
         <div className="columns">
@@ -57,5 +45,5 @@ const listAsansDetails = !props.asana.detail ? 'No details' : props.asana.detail
     )
 }
 
- export default Asana
+ export default Asana;
 

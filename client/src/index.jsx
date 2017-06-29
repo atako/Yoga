@@ -12,7 +12,7 @@ import promise from 'redux-promise';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-console.log(createStore(reducers).getState());
+// console.log(createStore(reducers).getState());
 // const store = createStore(reducer, {});
 
 ReactDOM.render(
