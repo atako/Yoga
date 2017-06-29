@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-import initList from './initList';
 import AsansList from './containers/asansList';
 import Menu from './components/menu';
+import reducers from './reducers';
 
-const reducer = (state) => {
-  return state;
-}
+import promise from 'redux-promise';
 
-const store = createStore(reducer, initList);
 
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
+console.log(createStore(reducers).getState());
+// const store = createStore(reducer, {});
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AsansList />
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <div>
+      <Menu />
+      <AsansList />
+    </div>
+    
   </Provider>,
   document.getElementById('root')
 );

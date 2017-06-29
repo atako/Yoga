@@ -6,10 +6,13 @@
     "build": "webpack -p"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "^5.0.5",
-    "redux": "^3.7.0"
+    "redux": "^3.7.0",
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {
     "babel-core": "6.25.0",
