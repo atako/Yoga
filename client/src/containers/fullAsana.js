@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteAsana, editingAsana } from '../actions';
+import { deleteAsana, getAsana, switchToEdit } from '../actions';
+import AsanaEdit from '../components/asanaEdit';
 
 
 class FullAsana extends Component {
 
   componentDidMount() {
-    this.props.editingAsana(this.props.match.params.id);
+    this.props.getAsana(this.props.match.params.id);
   }
 
   onDeleteClick() {
@@ -19,11 +20,10 @@ class FullAsana extends Component {
 
   render(){
     const asana = this.props.asans;
-
     if (!asana) {
       return (
         <div>Loading...</div>
-      )
+      );
     }
 
 
@@ -45,6 +45,7 @@ class FullAsana extends Component {
                     {!this.props.asans.duration ? '' : <span className="primary label">Время {this.props.asans.duration}</span>}
                     <h5>{this.props.asans.description}</h5>
                     <button type="button" className="alert button" onClick={this.onDeleteClick.bind(this)}>Delete</button>
+                    <Link to={`/asans/edit/${this.props.asans._id}`} className="button">Edit</Link>
                   </div>
                   </div>
               </a>
@@ -62,5 +63,4 @@ function mapStateToProps(state) {
 }
 
 
-// export default connect(mapStateToProps, { fetchAsans })(AsansList);
-export default connect(mapStateToProps, { deleteAsana, editingAsana })(FullAsana);
+export default connect(mapStateToProps, { deleteAsana, getAsana })(FullAsana);

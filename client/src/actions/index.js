@@ -4,6 +4,9 @@ export const FETCH_ASANS = 'fetch_asans';
 export const ADD_ASANA = 'add_asana';
 export const DELETE_ASANA = 'delete_asana';
 export const EDIT_ASANA = 'edit_asana';
+export const SWITCH_TO_EDIT = 'switch_to_edit';
+export const GET_ASANA = 'get_asana';
+export const UPDATE_ASANA = 'update_asana';
 
 const ROOT_URL = 'http://localhost:3000/api/asans';
 
@@ -36,7 +39,7 @@ export function deleteAsana(id, callback) {
   };
 }
 
-export function editingAsana(id) {
+export function getAsana(id) {
   const request = axios.get(`${ROOT_URL}/${id}`);
 
   return {
@@ -44,3 +47,14 @@ export function editingAsana(id) {
     payload: request
   };
 }
+
+export function updateAsana(id, values, callback) {
+  const request = axios.post(`${ROOT_URL}/edit/${id}`, values)
+    .then(() => callback());
+
+  return {
+    type: UPDATE_ASANA,
+    payload: request
+  };
+}
+

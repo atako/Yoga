@@ -25,8 +25,14 @@ module.exports = {
 
   },
 
-  editAsana(req, res) {
-    Asana.findByIdAndUpdate(req.params.id)
+  updateAsana(req, res) {
+    Asana.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => Asana.findById(req.params.id))
+      .then(asana => res.send(asana))
+  },
+
+  getAsana(req, res) {
+    Asana.findById(req.params.id)
       .then(asana => res.send(asana))
   }
       

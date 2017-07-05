@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AsansList from './containers/asansList';
 import NewAsana from './components/newAsana';
 import FullAsana from './containers/fullAsana';
+import EditAsana from './components/asanaEdit';
 import Menu from './components/menu';
 import reducers from './reducers';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
       <div>
         <Menu />
         <Switch>
+          <Route path="/asans/edit/:id" component={EditAsana} />
           <Route path="/asans/:id" component={FullAsana} />
           <Route path='/new' component={NewAsana} />
           <Route path="/" component={AsansList} />

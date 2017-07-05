@@ -5,5 +5,6 @@ module.exports = (app) => {
   app.get('/api/asans', AsanasController.getAsansList);
   app.post('/api/asans', AsanasController.create);
   app.delete('/api/asans/:id', AsanasController.deleteAsana);
-  app.get('/api/asans/:id', AsanasController.editAsana);
+  app.get('/api/asans/:id', AsanasController.getAsana);
+  app.post('/api/asans/edit/:id', AsanasController.updateAsana);
 };
