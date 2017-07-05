@@ -18,6 +18,17 @@ module.exports = {
       .then(asana => res.send(asana))
       .catch(next);
   },
+
+  deleteAsana(req, res) {
+    Asana.findByIdAndRemove(req.params.id)
+      .then(result => res.status(204).send(result))
+
+  },
+
+  editAsana(req, res) {
+    Asana.findByIdAndUpdate(req.params.id)
+      .then(asana => res.send(asana))
+  }
       
 
 }

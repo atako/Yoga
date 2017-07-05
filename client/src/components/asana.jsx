@@ -1,20 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import AsanaDetail from './asanaDetail';
-import { addAsana } from '../actions';
+import { addAsana, deleteAsana } from '../actions';
 
 const Asana = (props) => {
 
 const listAsansDetails = !props.asana.detail ? 'No details' : props.asana.detail.map((detail) =><AsanaDetail detail={detail} /> )
 
-const testAdd = () => {
-  addAsana();
-}
-
   return (
     <div className="row">
       <div className="small-1 columns">
-        <button className="button" onClick={testAdd}>Произнести</button>
+        <Link to={`/asans/${props.asana._id}`}>Details</Link>
       </div>
       <div className="small-11 columns">
         <div className="columns">
