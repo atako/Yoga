@@ -51,6 +51,11 @@ render() {
             name="image"
             component={this.renderField}
           />
+          <Field 
+            label="Descripton"
+            name="description"
+            component={this.renderField}
+          />
           <button type="submit" className="success button">Add</button>
         </form>
       </div>

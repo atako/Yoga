@@ -14,7 +14,8 @@ handleInitialize() {
   const initData = {
     "title": this.props.asans.title,
     "duration": this.props.asans.duration,
-    "footDistance": this.props.asans.footDistance
+    "footDistance": this.props.asans.footDistance,
+    "description": this.props.asans.description
   };
 
   this.props.initialize(initData);
@@ -60,6 +61,11 @@ render() {
           <Field 
             label="Link to image"
             name="image"
+            component={this.renderField}
+          />
+          <Field 
+            label="Description"
+            name="description"
             component={this.renderField}
           />
           <button type="submit" className="success button">Save</button>
