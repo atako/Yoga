@@ -1,10 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAsana, updateAsana } from '../actions';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
+import Button from 'material-ui/Button';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import TextField from 'material-ui/TextField';
+
+import { getAsana, updateAsana } from '../actions';
+
+const styleSheet = createStyleSheet('TextFields', theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  input: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+}));
 
 class EditAsana extends Component {
+
+// state = {
+//   name: 'Cat in the Hat',
+// };
 
 componentDidMount() {
   this.handleInitialize();
@@ -38,6 +59,7 @@ onSubmit(values) {
 }
 
 render() {
+  const classes = this.props.classes;
   const { handleSubmit } = this.props;
 
   return(<div className='medium-10 columns'>
@@ -68,8 +90,92 @@ render() {
             name="description"
             component={this.renderField}
           />
-          <button type="submit" className="success button">Save</button>
+          <Button type="submit" raised color="primary">Save</Button>
         </form>
+        
+      <div className={classes.container}>
+        <TextField
+          id="name"
+          label="Name"
+          className={classes.input}
+          onChange={event => this.setState({ name: event.target.value })}
+          marginForm
+        />
+        <TextField
+          id="uncontrolled"
+          label="Uncontrolled"
+          defaultValue="foo"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          required
+          id="required"
+          label="Required"
+          defaultValue="Hello World"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          error
+          id="error"
+          label="Error"
+          defaultValue="Hello World"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          id="password"
+          label="Password"
+          className={classes.input}
+          type="password"
+          marginForm
+        />
+        <TextField
+          id="multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax="4"
+          defaultValue="Default Value"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          id="multiline-static"
+          label="Multiline"
+          multiline
+          rows="4"
+          defaultValue="Default Value"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          id="date"
+          label="From date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.input}
+          marginForm
+        />
+        <TextField
+          id="helperText"
+          label="Helper text"
+          type="text"
+          defaultValue="Default Value"
+          className={classes.input}
+          helperText="Some important text"
+          marginForm
+        />
+        <TextField
+          id="placeholder"
+          label="Label"
+          type="text"
+          InputProps={{ placeholder: 'Placeholder' }}
+          helperText="Full width!!!"
+          fullWidth
+          marginForm
+        />
+      </div>
       </div>)
 }
 
@@ -85,11 +191,15 @@ const validate = (values) => {
   return errors;
 }
 
+EditAsana.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 function mapStateToProps(state) {
   return { asans: state.asans };
 }
 
-export default reduxForm({
+export default (reduxForm({
   validate: validate,
   form: 'editAsana'
-})(connect(mapStateToProps, { getAsana, updateAsana })(EditAsana));
+}))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));

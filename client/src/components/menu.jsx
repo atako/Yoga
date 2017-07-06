@@ -7,6 +7,7 @@ const Menu = () => {
     <ul className="menu">
       <li><Link to="/">Список</Link></li>
       <li><Link to="/new">Добавить</Link></li>
+      <li><Link to="/material">Material</Link></li>
     </ul>
   );
 

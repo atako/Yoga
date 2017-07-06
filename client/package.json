@@ -8,13 +8,16 @@
   "dependencies": {
     "axios": "^0.16.2",
     "lodash": "^4.17.4",
+    "material-ui": "^1.0.0-alpha.21",
+    "prop-types": "^15.5.10",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
     "redux-form": "^6.8.0",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "typeface-roboto": "0.0.29"
   },
   "devDependencies": {
     "babel-core": "6.25.0",

@@ -3,9 +3,58 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteAsana, getAsana, switchToEdit } from '../actions';
 import AsanaEdit from '../components/asanaEdit';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import PropTypes from 'prop-types';
+import IconButton from 'material-ui/IconButton';
+import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 
+const styleSheet = createStyleSheet('SimpleCard', theme => ({
+  card: {
+    display: 'flex',
+    // justifyContent: 'space-around',
+    // minWidth: 400,
+    // minHeight: 1000,
+    marginBottom: 20
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  cover: {
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 5,
+    marginLeft: 5
+  },
+  // content: {
+  //   flex: '1 0 auto',
+  // },
+  // bullet: {
+  //   display: 'inline-block',
+  //   margin: '0 2px',
+  //   transform: 'scale(0.8)',
+  // },
+  title: {
+    fontSize: 14,
+    color: theme.palette.text.secondary,
+  },
+  pos: {
+    marginBottom: 12,
+    color: theme.palette.text.secondary,
+  },
+  media: {
+    marginTop: 5,
+    marginLeft: 5
+  }
+}));
 
 class FullAsana extends Component {
+
+  
 
   componentDidMount() {
     this.props.getAsana(this.props.match.params.id);
@@ -19,6 +68,10 @@ class FullAsana extends Component {
   }
 
   render(){
+
+    const classes  = this.props.classes;
+    const bull = <span className={classes.bullet}>•</span>;
+
     const asana = this.props.asans;
     if (!asana) {
       return (
@@ -53,14 +106,56 @@ class FullAsana extends Component {
           </ul>
         </div>
     </div>
+    <div className="small-11 columns">
+      <Card className={classes.card}>
+        <div className={classes.cover}>
+          <img src={this.props.asans.image} />
+        </div>
+        <div className={classes.details}>
+          <Typography type="headline" component="h2">
+            {this.props.asans.title}
+          </Typography>
+          <Typography component="p">
+            {this.props.asans.description}
+          </Typography>
+        </div>
+        {/*<CardMedia className={classes.media}>
+          <img src={this.props.asans.image} alt="Contemplative Reptile" />
+        </CardMedia>*/}
+        {/*<CardContent>
+          <Typography type="body1" className={classes.title}>
+            Word of the Day
+          </Typography>
+          <Typography type="headline" component="h2">
+            {this.props.asans.title}
+          </Typography>
+          <Typography type="body1" className={classes.pos}>
+            adjective
+          </Typography>
+          <Typography component="p">
+            well meaning and kindly.<br />
+            {'"a benevolent smile"'}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button raised>Learn More</Button>
+        </CardActions>*/}
+      </Card>
     </div>
+    </div>
+    
     );
   }
 }
+
+
+FullAsana.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return { asans: state.asans };
 }
 
 
-export default connect(mapStateToProps, { deleteAsana, getAsana })(FullAsana);
+export default withStyles(styleSheet)(connect(mapStateToProps, { deleteAsana, getAsana })(FullAsana));

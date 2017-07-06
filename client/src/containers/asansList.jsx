@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAsans, addAsana } from '../actions'; 
 
+
 import Asana from '../components/asana';
 
 
@@ -30,6 +31,7 @@ class AsansList extends Component {
     
     
     return(
+      
       <div>
         {this.renderAsans()}
       </div>
