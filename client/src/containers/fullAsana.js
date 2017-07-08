@@ -30,14 +30,6 @@ const styleSheet = createStyleSheet('SimpleCard', theme => ({
     marginRight: 5,
     marginLeft: 5
   },
-  // content: {
-  //   flex: '1 0 auto',
-  // },
-  // bullet: {
-  //   display: 'inline-block',
-  //   margin: '0 2px',
-  //   transform: 'scale(0.8)',
-  // },
   title: {
     fontSize: 14,
     color: theme.palette.text.secondary,
@@ -49,6 +41,9 @@ const styleSheet = createStyleSheet('SimpleCard', theme => ({
   media: {
     marginTop: 5,
     marginLeft: 5
+  },
+  navButton: {
+    textDecorationLine: 'none'
   }
 }));
 
@@ -82,7 +77,7 @@ class FullAsana extends Component {
 
     return (
       <div className="row">
-      <div className="small-11 columns">
+      {/*<div className="small-11 columns">
         <div className="columns">
           <ul className="accordion" data-accordion data-allow-all-closed="true">  
             <li className="accordion-item" data-accordion-item>
@@ -105,7 +100,7 @@ class FullAsana extends Component {
             </li>
           </ul>
         </div>
-    </div>
+    </div>*/}
     <div className="small-11 columns">
       <Card className={classes.card}>
         <div className={classes.cover}>
@@ -119,27 +114,12 @@ class FullAsana extends Component {
             {this.props.asans.description}
           </Typography>
         </div>
-        {/*<CardMedia className={classes.media}>
-          <img src={this.props.asans.image} alt="Contemplative Reptile" />
-        </CardMedia>*/}
-        {/*<CardContent>
-          <Typography type="body1" className={classes.title}>
-            Word of the Day
-          </Typography>
-          <Typography type="headline" component="h2">
-            {this.props.asans.title}
-          </Typography>
-          <Typography type="body1" className={classes.pos}>
-            adjective
-          </Typography>
-          <Typography component="p">
-            well meaning and kindly.<br />
-            {'"a benevolent smile"'}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button raised>Learn More</Button>
-        </CardActions>*/}
+          <Link className={classes.navButton} to={`/asans/edit/${this.props.asans._id}`}>
+            <Button color="primary" className={classes.navButton}>Редактировать</Button>
+          </Link>
+          <Link className={classes.navButton} to={`/asans/edit/${this.props.asans._id}`}>
+            <Button color="accent" className={classes.navButton} onClick={this.onDeleteClick.bind(this)} >Удалить</Button>
+          </Link>
       </Card>
     </div>
     </div>

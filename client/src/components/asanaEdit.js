@@ -6,18 +6,43 @@ import { Field, reduxForm } from 'redux-form';
 import Button from 'material-ui/Button';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+
 
 import { getAsana, updateAsana } from '../actions';
 
-const styleSheet = createStyleSheet('TextFields', theme => ({
-  container: {
+const styleSheet = createStyleSheet('EditAsana', theme => ({
+  wrap: {
     display: 'flex',
-    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flexGrow: '1'
+
+  },
+  container: {
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    // flexGrow: '1'
   },
   input: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 300,
+  },
+  inputSmall: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 100,
+  },
+  paper: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    background: 'whitesmoke',
+    elevation: 20,
+    square: true
+  }),
+  button: {
+    margin: theme.spacing.unit,
   },
 }));
 
@@ -30,6 +55,7 @@ class EditAsana extends Component {
 componentDidMount() {
   this.handleInitialize();
 }
+
 
 handleInitialize() {
   const initData = {
@@ -44,11 +70,20 @@ handleInitialize() {
 
 renderField(field) {
   return (
-    <div className='medium-6 columns'>
-      <label>{field.label}</label>
-        <input type="text" {...field.input}/>  
-      {field.meta.touched ? field.meta.error: ''}
-    </div>
+    // <div className='medium-6 columns'>
+    //   <label>{field.label}</label>
+    //     <input type="text" {...field.input}/>  
+    //   {field.meta.touched ? field.meta.error: ''}
+    // </div>
+    <TextField
+      required
+      id="title"
+      label="Название"
+      //className={classes.input}
+      defaultValue='test'
+      onChange={event => this.setState({ name: event.target.value })}
+      marginForm
+    />
   )
 }
 
@@ -61,123 +96,112 @@ onSubmit(values) {
 render() {
   const classes = this.props.classes;
   const { handleSubmit } = this.props;
+  return(
+    <div className={classes.wrap}>
+    <div className={classes.container}>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Paper className={classes.paper} elevation={4}>
+          <Grid container gutter={8}>
+            <Grid item xs={8}>
+              <Field 
+                label="Title"
+                name="title"
+                type="text"
+                component={this.renderField}
+              />
+              <TextField
+                required
+                id="title"
+                label="Название"
+                className={classes.input}
+                defaultValue={this.props.asans.title}
+                onChange={event => this.setState({ name: event.target.value })}
+                marginForm
+              />
+              <TextField
+                id="duration"
+                label="Время"
+                defaultValue={this.props.asans.duration}
+                className={classes.inputSmall}
+                marginForm
+              />
+              <TextField
+                id="footDistance"
+                label="Расстояние"
+                defaultValue={this.props.asans.footDistance}
+                className={classes.inputSmall}
+                marginForm
+              />
+              <TextField
+                id="footPosition"
+                label="Позиция"
+                defaultValue={this.props.asans.footPosition}
+                className={classes.inputSmall}
+                marginForm
+              />
+            </Grid>
+            <Grid item xs={8}>
+              <TextField
+                id="description"
+                label="Описание"
+                multiline
+                rows="3"
+                defaultValue={this.props.asans.description}
+                className={classes.input}
+                marginForm
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button raised color="primary" className={classes.button} type="submit">
+                Сохранить
+              </Button> 
+            </Grid> 
+          </Grid>
+        </Paper>   
+      </form>
+    </div>
 
-  return(<div className='medium-10 columns'>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field 
-            label="Title"
-            name="title"
-            type="text"
-            component={this.renderField}
-          />
-          <Field
-            label="Duration"
-            name="duration"
-            component={this.renderField}
-          />
-          <Field 
-            label="Foot distance"
-            name="footDistance"
-            component={this.renderField}
-          />
-          <Field 
-            label="Link to image"
-            name="image"
-            component={this.renderField}
-          />
-          <Field 
-            label="Description"
-            name="description"
-            component={this.renderField}
-          />
-          <Button type="submit" raised color="primary">Save</Button>
-        </form>
-        
-      <div className={classes.container}>
-        <TextField
-          id="name"
-          label="Name"
-          className={classes.input}
-          onChange={event => this.setState({ name: event.target.value })}
-          marginForm
-        />
-        <TextField
-          id="uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          required
-          id="required"
-          label="Required"
-          defaultValue="Hello World"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          error
-          id="error"
-          label="Error"
-          defaultValue="Hello World"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          id="password"
-          label="Password"
-          className={classes.input}
-          type="password"
-          marginForm
-        />
-        <TextField
-          id="multiline-flexible"
-          label="Multiline"
-          multiline
-          rowsMax="4"
-          defaultValue="Default Value"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          id="multiline-static"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          id="date"
-          label="From date"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.input}
-          marginForm
-        />
-        <TextField
-          id="helperText"
-          label="Helper text"
-          type="text"
-          defaultValue="Default Value"
-          className={classes.input}
-          helperText="Some important text"
-          marginForm
-        />
-        <TextField
-          id="placeholder"
-          label="Label"
-          type="text"
-          InputProps={{ placeholder: 'Placeholder' }}
-          helperText="Full width!!!"
-          fullWidth
-          marginForm
-        />
-      </div>
-      </div>)
-}
+    </div>
+)}
+  
+        // {/*<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        //   <Field 
+        //     label="Title"
+        //     name="title"
+        //     type="text"
+        //     component={this.renderField}
+        //   />
+        //   <Field
+        //     label="Duration"
+        //     name="duration"
+        //     component={this.renderField}
+        //   />
+        //   <Field 
+        //     label="Foot distance"
+        //     name="footDistance"
+        //     component={this.renderField}
+        //   />
+        //   <Field 
+        //     label="Link to image"
+        //     name="image"
+        //     component={this.renderField}
+        //   />
+        //   <Field 
+        //     label="Description"
+        //     name="description"
+        //     component={this.renderField}
+        //   />
+        //   <Button type="submit" raised color="primary">Save</Button>
+        // </form>*/}
+        // <div>
+        //   {/*<div className={classes.container}>
+        //     <Input defaultValue="Hello world" className={classes.input} />
+        //     <Input placeholder="Placeholder" className={classes.input} />
+        //     <Input value="Disabled" className={classes.input} disabled />
+        //     <Input defaultValue="Error" className={classes.input} error />
+        //   </div>*/}
+        // </div>)
+  
 
 }
 
@@ -203,3 +227,5 @@ export default (reduxForm({
   validate: validate,
   form: 'editAsana'
 }))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));
+
+// export default withStyles(styleSheet)(EditAsana);

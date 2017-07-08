@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public'),
+        // publicPath: '/public'
     },
 
     module: {
@@ -26,6 +27,12 @@ module.exports = {
     },
 
     devtool: 'cheap-eval-source-map',
+
+    devServer: {
+        historyApiFallback: true,
+        publicPath: '/'
+
+    },
     
     resolve: {
         extensions: ['.js', '.jsx', '.json', '*']
