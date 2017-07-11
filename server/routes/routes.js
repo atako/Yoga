@@ -7,4 +7,5 @@ module.exports = (app) => {
   app.delete('/api/asans/:id', AsanasController.deleteAsana);
   app.get('/api/asans/:id', AsanasController.getAsana);
   app.post('/api/asans/edit/:id', AsanasController.updateAsana);
+  app.get('/api/plan/:id', PlanController.getList);
 };

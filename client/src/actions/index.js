@@ -49,7 +49,7 @@ export function getAsana(id) {
 }
 
 export function updateAsana(id, values, callback) {
-  const request = axios.post(`${ROOT_URL}/edit/${id}`, values)
+   const request = axios.post(`${ROOT_URL}/edit/${id}`, values)
     .then(() => callback());
 
   return {

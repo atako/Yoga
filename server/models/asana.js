@@ -13,6 +13,12 @@ const AsanaSchema = new Schema({
   image: String
 });
 
+const PlanSchema = new Schema({
+  title: String,
+  asans: [{ type: Schema.Types.ObjectId, ref: 'asana'}]
+})
+
 const Asana = mongoose.model('asana', AsanaSchema);
+const Plan = mongoose.model('plan', PlanSchema);
 
 module.exports = Asana;

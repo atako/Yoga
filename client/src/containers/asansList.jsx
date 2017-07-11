@@ -31,7 +31,6 @@ class AsansList extends Component {
     
     
     return(
-      
       <div>
         {this.renderAsans()}
       </div>

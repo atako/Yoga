@@ -14,10 +14,12 @@ import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 const styleSheet = createStyleSheet('SimpleCard', theme => ({
   card: {
     display: 'flex',
-    // justifyContent: 'space-around',
+    //justifyContent: 'center',
     // minWidth: 400,
     // minHeight: 1000,
-    marginBottom: 20
+    marginBottom: 20,
+    maxWidth: 960,
+
   },
   details: {
     display: 'flex',

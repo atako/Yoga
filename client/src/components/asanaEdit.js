@@ -12,10 +12,18 @@ import Grid from 'material-ui/Grid';
 
 import { getAsana, updateAsana } from '../actions';
 
+const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
+    return(<TextField
+      label={label}
+      {...input}
+      {...custom}
+    />
+    )
+}
+
 const styleSheet = createStyleSheet('EditAsana', theme => ({
   wrap: {
     display: 'flex',
-    justifyContent: 'center',
     flexGrow: '1'
 
   },
@@ -39,7 +47,8 @@ const styleSheet = createStyleSheet('EditAsana', theme => ({
     paddingBottom: 16,
     background: 'whitesmoke',
     elevation: 20,
-    square: true
+    square: false,
+    maxWidth: 860
   }),
   button: {
     margin: theme.spacing.unit,
@@ -47,10 +56,6 @@ const styleSheet = createStyleSheet('EditAsana', theme => ({
 }));
 
 class EditAsana extends Component {
-
-// state = {
-//   name: 'Cat in the Hat',
-// };
 
 componentDidMount() {
   this.handleInitialize();
@@ -68,24 +73,26 @@ handleInitialize() {
   this.props.initialize(initData);
 }
 
-renderField(field) {
-  return (
-    // <div className='medium-6 columns'>
-    //   <label>{field.label}</label>
-    //     <input type="text" {...field.input}/>  
-    //   {field.meta.touched ? field.meta.error: ''}
-    // </div>
-    <TextField
-      required
-      id="title"
-      label="Название"
-      //className={classes.input}
-      defaultValue='test'
-      onChange={event => this.setState({ name: event.target.value })}
-      marginForm
-    />
-  )
-}
+
+
+// renderField({ field, label }) {
+//   return (
+//     // <div className='medium-6 columns'>
+//     //   <label>{field.label}</label>
+//     //     <input type="text" {...field.input}/>  
+//     //   {field.meta.touched ? field.meta.error: ''}
+//     // </div>
+//     <TextField
+//       required
+//       id="title"
+//       label={label}
+//       //className={classes.input}
+//       defaultValue="Some asana"
+//       //onChange={event => this.setState({ name: event.target.value })}
+//       //marginForm
+//     />
+//   )
+// }
 
 onSubmit(values) {
   this.props.updateAsana(this.props.asans._id, values, () => {
@@ -101,56 +108,48 @@ render() {
     <div className={classes.container}>
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Paper className={classes.paper} elevation={4}>
-          <Grid container gutter={8}>
-            <Grid item xs={8}>
+          <Grid container gutter={24}>
+            <Grid item xs={12} md={12}>
               <Field 
-                label="Title"
-                name="title"
-                type="text"
-                component={this.renderField}
-              />
-              <TextField
-                required
-                id="title"
                 label="Название"
-                className={classes.input}
-                defaultValue={this.props.asans.title}
-                onChange={event => this.setState({ name: event.target.value })}
-                marginForm
+                name="title"
+                custom={{required:true, className:classes.input}}
+                component={renderTextField}
               />
-              <TextField
-                id="duration"
+              <Field
                 label="Время"
-                defaultValue={this.props.asans.duration}
-                className={classes.inputSmall}
-                marginForm
+                name="duration"
+                custom={{required:false, className:classes.inputSmall}}
+                component={renderTextField}
               />
-              <TextField
-                id="footDistance"
-                label="Расстояние"
-                defaultValue={this.props.asans.footDistance}
-                className={classes.inputSmall}
-                marginForm
+              <Field
+                label="Ноги"
+                name="footDistance"
+                custom={{required:false, className:classes.inputSmall}}
+                component={renderTextField}
               />
-              <TextField
-                id="footPosition"
+              <Field
                 label="Позиция"
-                defaultValue={this.props.asans.footPosition}
-                className={classes.inputSmall}
-                marginForm
+                name="footPosition"
+                custom={{required:false, className:classes.inputSmall}}
+                component={renderTextField}
               />
             </Grid>
-            <Grid item xs={8}>
-              <TextField
-                id="description"
+            <Grid item md={12}>
+              <Field
                 label="Описание"
-                multiline
-                rows="3"
-                defaultValue={this.props.asans.description}
-                className={classes.input}
-                marginForm
+                name="description"
+                custom={{required:false, className:classes.input, multiline:true, rowsMax:4}}
+                component={renderTextField}
+              />
+              <Field
+                label="Фотография"
+                name="image"
+                custom={{required:false, className:classes.input}}
+                component={renderTextField}
               />
             </Grid>
+            <Grid item md={10}></Grid>
             <Grid item xs={2}>
               <Button raised color="primary" className={classes.button} type="submit">
                 Сохранить
