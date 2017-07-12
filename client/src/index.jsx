@@ -8,6 +8,7 @@ import AsansList from './containers/asansList';
 import NewAsana from './components/newAsana';
 import FullAsana from './containers/fullAsana';
 import EditAsana from './components/asanaEdit';
+import PlanList from './containers/listPlans';
 import MaterialTest from './components/materialTest';
 import Menu from './components/menu';
 import reducers from './reducers';
@@ -26,7 +27,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/asans/edit/:id" component={EditAsana} />
           <Route path="/asans/:id" component={FullAsana} />
-          <Route path="/material" component={MaterialTest} />
+          <Route path="/plan" component={PlanList} />
           <Route path='/new' component={NewAsana} />
           <Route path="/" component={AsansList} />
         </Switch>
