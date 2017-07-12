@@ -8,6 +8,7 @@ export const SWITCH_TO_EDIT = 'switch_to_edit';
 export const GET_ASANA = 'get_asana';
 export const UPDATE_ASANA = 'update_asana';
 export const GET_PLAN_LIST = 'get_plan_list';
+export const GET_PLAN_DETAIL = 'get_plan_detail';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
@@ -64,6 +65,16 @@ export function getPlanList() {
 
   return {
     type: GET_PLAN_LIST,
+    payload: request
+  };
+
+}
+
+export function getPlanDetail(id) {
+  const request = axios.get(`${ROOT_URL}/plan/${id}`);
+
+  return {
+    type: GET_PLAN_DETAIL,
     payload: request
   };
 }

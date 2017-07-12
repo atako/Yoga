@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPlanList } from '../actions';
+import { Link } from 'react-router-dom';
 
 class PlanList extends Component {
   
@@ -11,7 +12,7 @@ class PlanList extends Component {
 
   renderList() {
       return _.map(this.props.asans, value => {
-        return <li key={value._id}>{value.title}</li>
+        return <li key={value._id}><Link key={value._id} to={`/plan/${value._id}`}>{value.title}</Link></li>
       });
 
   }

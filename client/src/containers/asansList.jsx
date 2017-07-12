@@ -15,7 +15,7 @@ class AsansList extends Component {
   }
 
   renderAsans() {
-    return _.map(this.props.asans, asana => {
+    return _.map(this.props.asans.asans, asana => {
       return <Asana key={asana._id} asana={asana} />
     });
   }
