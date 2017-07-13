@@ -37,6 +37,9 @@ function ButtonAppBar(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Title
           </Typography>
+          <Link className={classes.navButton} to="/">
+            <Button className={classes.navButton}>Список</Button>
+          </Link>
           <Link className={classes.navButton} to="/plan">
             <Button className={classes.navButton}>План</Button>
           </Link>

@@ -9,12 +9,6 @@ export default function(state = {}, action) {
     case EDIT_ASANA:
       const asana = (action.payload.data);
       return asana;
-    case GET_PLAN_LIST:
-      const planList = _.mapKeys(action.payload.data, '_id');
-      return planList;
-    case GET_PLAN_DETAIL:
-      const planDetail = (action.payload.data);
-      return planDetail;
     default:
       return state;
   }

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { fetchAsans, addAsana } from '../actions'; 
 
 
-import Asana from '../components/asana';
+import AsanaEdit from '../components/edit/asana';
 
 
-class AsansList extends Component {
+class AsansEditList extends Component {
   
   componentDidMount() {
     this.props.fetchAsans();
@@ -16,21 +16,19 @@ class AsansList extends Component {
 
   renderAsans() {
     return _.map(this.props.asans, asana => {
-      return <Asana key={asana._id} asana={asana} />
+      return <AsanaEdit key={asana._id} asana={asana} history={this.props.history}/>
     });
   }
 
 
   render(){
     const asans = this.props.asans;
-    // if(_.isEmpty(asans)) {
-    //   return (
-    //     setTimeout(() => {
-    //       <div>Loading...</div>
-    //     }, 1000)
-        
-    //   )
-    // };
+
+    if(_.isEmpty(asans)) {
+      return (
+          <div>Loading...</div>
+      )
+    };
     
     
     return(
@@ -45,4 +43,4 @@ const mapStateToProps = (state) => {
   return { asans: state.asans };
 }
 
-export default connect(mapStateToProps, { fetchAsans, addAsana })(AsansList);
+export default connect(mapStateToProps, { fetchAsans, addAsana })(AsansEditList);

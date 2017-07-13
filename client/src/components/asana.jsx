@@ -68,9 +68,9 @@ const Asana = (props) => {
             {props.asana.description}
           </Typography>
         </div>
-          <Link className={classes.navButton} to={`/asans/${props.asana._id}`}>
+          {/* <Link className={classes.navButton} to={`/asans/${props.asana._id}`}>
             <Button color="primary" className={classes.navButton}>Подробнее</Button>
-          </Link>
+          </Link> */}
       </Card>
     </div>
     // <div className="row">

@@ -11,13 +11,13 @@ componentDidMount() {
 }
 
 renderAsans() {
-  return _.map(this.props.asans.asans, asana => {
+  return _.map(this.props.plans.asans, asana => {
     return <Asana key={asana._id} asana={asana} />
   });
 }
 
 render() {
-  const list = this.props.asans;
+  const list = this.props.plans;
 
   if (_.isEmpty(list)) {
     return(
@@ -35,7 +35,7 @@ render() {
 
 
 const mapStateToProps = (state) => {
-  return { asans: state.asans }
+  return { plans: state.plans }
 }
 
 export default connect(mapStateToProps, { getPlanDetail })(PlanDetail);
