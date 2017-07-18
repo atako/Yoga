@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPlanList } from '../actions';
 import { Link } from 'react-router-dom';
 
-class PlanList extends Component {
+class ListOfPlans extends Component {
   
   componentDidMount() {
     this.props.getPlanList();
@@ -12,7 +12,7 @@ class PlanList extends Component {
 
   renderList() {
       return _.map(this.props.plans, value => {
-        return <li><Link key={value._id} to={`/plan/${value._id}`}>{value.title}</Link></li>
+        return <li key={value._id}><Link to={`/plan/${value._id}`}>{value.title}</Link></li>
       });
 
   }
@@ -20,11 +20,11 @@ class PlanList extends Component {
   render() {
     const list = this.props.plans;
 
-    // if (_.isEmpty(list)) {
-    //   return(
-    //     <div>Loading...</div>
-    //   )
-    // };
+    if (_.isEmpty(list)) {
+      return(
+        <div>Loading...</div>
+      )
+    };
 
     return(
       <ul>
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
   return { plans: state.plans }
 }
 
-export default connect(mapStateToProps, { getPlanList })(PlanList);
+export default connect(mapStateToProps, { getPlanList })(ListOfPlans);
 
 
 

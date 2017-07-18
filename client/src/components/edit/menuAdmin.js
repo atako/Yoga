@@ -14,7 +14,8 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
   root: {
     width: '100%',
     marginBottom: 30,
-    background: 'white'
+    background: 'white',
+    color: 'accent'
   },
   flex: {
     flex: 1,
@@ -37,7 +38,7 @@ function ButtonAppBar(props) {
           <Typography type="title" color="inherit" className={classes.flex}>
             Title
           </Typography>
-          <Link className={classes.navButton} to="/">
+          <Link className={classes.navButton} to="/asana/all">
             <Button className={classes.navButton}>Список</Button>
           </Link>
           <Link className={classes.navButton} to="/plan">

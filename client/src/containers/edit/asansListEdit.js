@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAsans, addAsana } from '../actions'; 
+import { fetchAsans, addAsana } from '../../actions'; 
 
 
-import AsanaEdit from '../components/edit/asana';
+import AsanaEdit from '../../components/edit/asana';
 
 
 class AsansEditList extends Component {

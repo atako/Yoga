@@ -4,34 +4,24 @@ import { connect } from 'react-redux';
 import { fetchAsans, addAsana } from '../actions'; 
 
 
-import Asana from '../components/asana';
+import AsanaRender from '../components/asanaRender';
 
 
 class AsansList extends Component {
   
   componentDidMount() {
     this.props.fetchAsans();
-
   }
 
   renderAsans() {
     return _.map(this.props.asans, asana => {
-      return <Asana key={asana._id} asana={asana} />
+      return <AsanaRender key={asana._id} asana={asana} />
     });
   }
 
 
   render(){
     const asans = this.props.asans;
-    // if(_.isEmpty(asans)) {
-    //   return (
-    //     setTimeout(() => {
-    //       <div>Loading...</div>
-    //     }, 1000)
-        
-    //   )
-    // };
-    
     
     return(
       <div>

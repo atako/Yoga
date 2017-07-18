@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPlanDetail } from '../actions';
-import Asana from '../components/asana';
+import AsanaRender from '../components/asanaRender';
 
 class PlanDetail extends Component {
 
@@ -12,7 +12,7 @@ componentDidMount() {
 
 renderAsans() {
   return _.map(this.props.plans.asans, asana => {
-    return <Asana key={asana._id} asana={asana} />
+    return <AsanaRender key={asana._id} asana={asana} />
   });
 }
 

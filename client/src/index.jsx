@@ -5,19 +5,20 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import AsansList from './containers/asansList';
-import EditAsansList from './containers/asansListEdit';
-import NewAsana from './components/newAsana';
-import FullAsana from './containers/fullAsana';
-import EditAsana from './components/asanaEdit';
-import PlanList from './containers/listPlans';
+import EditAsansList from './containers/edit/asansListEdit';
+// import NewAsana from './components/newAsana';
+// import FullAsana from './containers/fullAsana';
+import EditAsana from './components/edit/asanaEdit';
+import ListOfPlans from './containers/listOfPlans';
 import PlanDetail from './containers/detailPlan';
-import Menu from './components/menu';
+
+import MenuUser from './components/menuUser';
 import reducers from './reducers';
 import { MuiThemeProvider } from 'material-ui/styles';
 import promise from 'redux-promise';
 import logger from 'redux-logger';
 
-const middleware = [ promise, logger ];
+const middleware = [ promise ];
 // const createStoreWithMiddleware = applyMiddleware(logger, promise)(createStore);
 
 ReactDOM.render(
@@ -25,16 +26,16 @@ ReactDOM.render(
     <BrowserRouter>
     <MuiThemeProvider>
       <div>
-        <Menu />
+        <MenuUser />
         <Switch>
           {/* <Route path='/new' component={NewAsana} /> */}
-          <Route path="/asans/edit/:id" component={EditAsana} />
-          <Route path="/asans/:id" component={FullAsana} />
+          {/* <Route path="/asans/edit/:id" component={EditAsana} /> */}
+          {/* <Route path="/asans/:id" component={FullAsana} /> */}
+          <Route path="/asana/all" component={AsansList} />
           <Route path="/plan/:id" component={PlanDetail} />
-          <Route path="/new" component={NewAsana} />
-          <Route path="/edit" component={EditAsansList} />
-          <Route path="/plan" component={PlanList} />
-          <Route path="/" component={AsansList} />
+          {/* <Route path="/new" component={NewAsana} /> */}
+          <Route path="/edit" component={EditAsansList} /> 
+          <Route path="/" component={ListOfPlans} />
         </Switch>
       </div>
       </MuiThemeProvider>

@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
 
-import { getAsana, updateAsana } from '../actions';
+import { getAsana, updateAsana } from '../../actions';
 
 const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
     return(<TextField
