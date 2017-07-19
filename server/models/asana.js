@@ -10,7 +10,8 @@ const AsanaSchema = new Schema({
   duration: String,
   footDistance: String,
   footPosition: String,
-  image: String
+  image: String,
+  instructions: { type : Array , "default" : [] }
 });
 
 

@@ -18,8 +18,10 @@ const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
       {...input}
       {...custom}
     />
-    )
-}
+  )
+};
+
+
 
 const styleSheet = createStyleSheet('EditAsana', theme => ({
   wrap: {
@@ -53,25 +55,46 @@ const styleSheet = createStyleSheet('EditAsana', theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  instruction: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginBottom: 10
+  }
 }));
 
 class EditAsana extends Component {
 
-componentDidMount() {
-  this.handleInitialize();
-}
-
-
-handleInitialize() {
-  const initData = {
-    "title": this.props.asans.title,
-    "duration": this.props.asans.duration,
-    "footDistance": this.props.asans.footDistance,
-    "description": this.props.asans.description
+  componentDidMount() {
+    // this.handleInitialize();
+    this.props.getAsana(this.props.match.params.id);
   };
 
-  this.props.initialize(initData);
+  renderInstructions(field) {
+    return _.isEmpty(this.props.asans.instructions) ? 'no description' :
+    _.map(this.props.asans.instructions, instruction => {
+      return <Grid key={instruction.id} className={this.props.classes.instruction} item md={12}>
+            <Field
+            label={`Действие ${instruction.id}`}
+            name={instruction.id}
+            custom={{required:false}}
+            component={renderTextField}
+          />
+        </Grid>
+    });
 }
+  
+
+
+// handleInitialize() {
+//   const initData = {
+//     "title": this.props.asans.title,
+//     "duration": this.props.asans.duration,
+//     "footDistance": this.props.asans.footDistance,
+//     "description": this.props.asans.description
+//   };
+
+//   this.props.initialize(initData);
+// }
 
 
 
@@ -113,13 +136,13 @@ render() {
               <Field 
                 label="Название"
                 name="title"
-                custom={{required:true, className:classes.input}}
+                custom={{required:true, className:classes.input, defaultValue:this.props.asans.title}}
                 component={renderTextField}
               />
               <Field
                 label="Время"
                 name="duration"
-                custom={{required:false, className:classes.inputSmall}}
+                custom={{required:false, className:classes.inputSmall, defaultValue:this.props.asans.duration}}
                 component={renderTextField}
               />
               <Field
@@ -149,12 +172,15 @@ render() {
                 component={renderTextField}
               />
             </Grid>
+            <Grid item md={12}>
+              {this.renderInstructions()}
+            </Grid>
             <Grid item md={10}></Grid>
             <Grid item xs={2}>
               <Button raised color="primary" className={classes.button} type="submit">
                 Сохранить
               </Button> 
-            </Grid> 
+            </Grid>
           </Grid>
         </Paper>   
       </form>

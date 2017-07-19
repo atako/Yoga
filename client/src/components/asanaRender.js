@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import _ from 'lodash';
 
-
-import { deleteAsana, getAsana, switchToEdit } from '../actions';
-import AsanaEdit from '../components/edit/asanaEdit';
+import AsanaInstruction from './asanaInstruction';
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia, CardHeader } from 'material-ui/Card';
@@ -78,8 +77,17 @@ class Asana extends Component {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  renderInstructions() {
+    return _.isEmpty(this.props.asana.instructions) ? 'no description' :
+    _.map(this.props.asana.instructions, instruction => {
+      return <AsanaInstruction key={instruction.title} detail={instruction} />
+  });
+}
+
   render() {
     const classes = this.props.classes;
+
+    
 
     return (
         <div className="small-11 columns">
@@ -108,8 +116,8 @@ class Asana extends Component {
                 </IconButton> 
               </CardActions>
               <Collapse in={this.state.expanded} transitionDuration="auto" unmountOnExit>
-              <Typography className={classes.instructions} component="p">
-                {this.props.asana.description}
+              <Typography className={classes.instructions}>
+                {this.renderInstructions()}
               </Typography>
               </Collapse>
           </Card>

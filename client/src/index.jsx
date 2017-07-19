@@ -29,7 +29,7 @@ ReactDOM.render(
         <MenuUser />
         <Switch>
           {/* <Route path='/new' component={NewAsana} /> */}
-          {/* <Route path="/asans/edit/:id" component={EditAsana} /> */}
+           <Route path="/asans/edit/:id" component={EditAsana} /> 
           {/* <Route path="/asans/:id" component={FullAsana} /> */}
           <Route path="/asana/all" component={AsansList} />
           <Route path="/plan/:id" component={PlanDetail} />
