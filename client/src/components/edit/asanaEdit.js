@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, FieldArray } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
@@ -87,8 +87,44 @@ class EditAsana extends Component {
     });
 }
 
+//  renderMembers (field) {
+//    console.log(field);
+//    <ul>
+//      <li>
+//        <button type="button" onClick={() => fields.push({})}>
+//          Add Member
+//        </button>
+//      </li>
+//      {this.props.asans.instructions.map((member, index) =>
+//        <li key={index}>
+//          <button
+//            type="button"
+//            title="Remove Member"
+//            onClick={() => field.remove(index)}
+//          />
+//          <h4>
+//            Member #{index + 1}
+//          </h4>
+//          <Field
+//            name={`${member}.firstName`}
+//            type="text"
+//            component={renderField}
+//            label="First Name"
+//          />
+//          <Field
+//            name={`${member}.lastName`}
+//            type="text"
+//            component={renderField}
+//            label="Last Name"
+//          />
+//          {/* <FieldArray name={`${member}.hobbies`} component={renderHobbies} /> */}
+//        </li>
+//      )}
+//    </ul>
+//  }
+
 handleInitialize() {
-  console.log(this.props);
+  // console.log(this.props);
   const initData = {
     "title": this.props.asans.title,
     "description": this.props.asans.description
@@ -98,8 +134,6 @@ handleInitialize() {
 }
   
   onSubmit(values) {
-    // console.log(values);
-    // console.log(this.props);
     this.props.updateAsana(this.props.asans._id, values, () => {
       this.props.history.push(`/asana/all`);
     });
@@ -117,7 +151,7 @@ handleInitialize() {
                 <Grid item xs={12} md={12}>
                   <Field 
                     label="Название"
-                    name="title"
+                    name="titleee"
                     custom={{required:false, className:classes.input, defaultValue:'test'}}
                     component={renderTextField}
                   />
@@ -154,8 +188,14 @@ handleInitialize() {
                     component={renderTextField}
                   />
                 </Grid>
-                <Grid item md={12}>
+               
+                <Grid item md={2}>
+                <Button raised color="primary" className={classes.button} onClick={this.click}>
+                  Добавить
+                </Button> 
+                <Grid>
                   {this.renderInstructions()}
+                </Grid>
                 </Grid>
                 <Grid item md={10}></Grid>
                 <Grid item xs={2}>
