@@ -9,6 +9,10 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
+import IconButton from 'material-ui/IconButton';
+
+import DeleteIcon from 'material-ui-icons/Delete';
+import AddIcon from 'material-ui-icons/Add';
 
 
 import { getAsana, updateAsana } from '../../actions';
@@ -39,33 +43,33 @@ const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
 // }
 
 const renderInstructions = ({ fields, meta: { error, submitFailed } }) =>
-  <ul>
-    {fields.map((fields, index) => 
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Member"
-          onClick={() => fields.remove(index)}
-        />
+  <div>
+    {fields.map((instruction, index) => 
+      //{/* <li key={index}> */}
+        <div key={index}>
         <Field
-          name={`${fields}.title`}
+          name={`${instruction}.title`}
           type="text"
           component={renderTextField}
           label='Шаг'
         />
-      </li>
+        <IconButton aria-label="Add to favorites" onClick={() => fields.remove(index)}>
+          <DeleteIcon />
+        </IconButton>
+        </div>
+      //{/* </li> */}
     )}
-    <li>
-      <Button type="button" onClick={() => fields.push({})}>
-        Добавить шаг
+    <div>
+      <Button fab color="primary" onClick={() => fields.push({})}>
+        <AddIcon />
       </Button>
       {submitFailed &&
         error &&
         <span>
           {error}
         </span>}
-    </li>
-  </ul>
+    </div>
+  </div>
 
 
 
@@ -255,5 +259,6 @@ function mapStateToProps(state) {
 export default (reduxForm({
   validate: validate,
   form: 'editAsana',
-  enableReinitialize: true
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true
 }))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));
