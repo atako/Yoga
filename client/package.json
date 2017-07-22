@@ -15,7 +15,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
-    "redux-form": "^6.8.0",
+    "redux-form": "latest",
     "redux-promise": "^0.5.3",
     "typeface-roboto": "0.0.29"
   },

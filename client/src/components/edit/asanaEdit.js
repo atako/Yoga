@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, FieldArray } from 'redux-form';
@@ -20,6 +21,51 @@ const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
     />
   )
 };
+
+// const renderInstructions = ( { fields, meta: { error, submitFailed } } ) => {
+//   return 'test';
+//   // console.log(fields);
+//   // return _.isEmpty(this.props.asans.instructions) ? 'no description' :
+//   // _.map(this.props.asans.instructions, instruction => {
+//   //   return <Grid key={instruction.id} className={this.props.classes.instruction} item md={12}>
+//   //         <Field
+//   //           label={`Действие ${instruction.id}`}
+//   //           name={instruction.id}
+//   //           custom={{required:false}}
+//   //           component={renderTextField}
+//   //         />
+//   //     </Grid>
+//   // });
+// }
+
+const renderInstructions = ({ fields, meta: { error, submitFailed } }) =>
+  <ul>
+    {fields.map((fields, index) => 
+      <li key={index}>
+        <button
+          type="button"
+          title="Remove Member"
+          onClick={() => fields.remove(index)}
+        />
+        <Field
+          name={`${fields}.title`}
+          type="text"
+          component={renderTextField}
+          label='Шаг'
+        />
+      </li>
+    )}
+    <li>
+      <Button type="button" onClick={() => fields.push({})}>
+        Добавить шаг
+      </Button>
+      {submitFailed &&
+        error &&
+        <span>
+          {error}
+        </span>}
+    </li>
+  </ul>
 
 
 
@@ -64,30 +110,9 @@ const styleSheet = createStyleSheet('EditAsana', theme => ({
 
 class EditAsana extends Component {
 
-  componentWillMount() {
-    this.props.getAsana(this.props.match.params.id);
-    
-  };
-
   componentDidMount() {
     this.handleInitialize();
-  };
-
-  renderInstructions(field) {
-    return _.isEmpty(this.props.asans.instructions) ? 'no description' :
-    _.map(this.props.asans.instructions, instruction => {
-      return <Grid key={instruction.id} className={this.props.classes.instruction} item md={12}>
-            <Field
-              label={`Действие ${instruction.id}`}
-              name={instruction.id}
-              custom={{required:false}}
-              component={renderTextField}
-            />
-        </Grid>
-    });
-}
-
-//  renderMembers (field) {
+  }
 //    console.log(field);
 //    <ul>
 //      <li>
@@ -124,12 +149,7 @@ class EditAsana extends Component {
 //  }
 
 handleInitialize() {
-  // console.log(this.props);
-  const initData = {
-    "title": this.props.asans.title,
-    "description": this.props.asans.description
-  };
-
+  const initData = this.props.getAsana(this.props.match.params.id).then(result => result.payload.data);
   this.props.initialize(initData);
 }
   
@@ -142,6 +162,13 @@ handleInitialize() {
   render() {
     const classes = this.props.classes;
     const { handleSubmit } = this.props;
+
+    if(_.isEmpty(this.props.asans)) {
+      return (
+        <div> Loading...</div>
+      )
+    };
+
     return(
       <div className={classes.wrap}>
         <div className={classes.container}>
@@ -151,14 +178,14 @@ handleInitialize() {
                 <Grid item xs={12} md={12}>
                   <Field 
                     label="Название"
-                    name="titleee"
-                    custom={{required:false, className:classes.input, defaultValue:'test'}}
+                    name="title"
+                    custom={{required:false, className:classes.input}}
                     component={renderTextField}
                   />
                   <Field
                     label="Время"
                     name="duration"
-                    custom={{required:false, className:classes.inputSmall, defaultValue:this.props.asans.duration}}
+                    custom={{required:false, className:classes.inputSmall}}
                     component={renderTextField}
                   />
                   <Field
@@ -188,14 +215,10 @@ handleInitialize() {
                     component={renderTextField}
                   />
                 </Grid>
-               
                 <Grid item md={2}>
-                <Button raised color="primary" className={classes.button} onClick={this.click}>
-                  Добавить
-                </Button> 
-                <Grid>
-                  {this.renderInstructions()}
                 </Grid>
+                <Grid item md={12}>
+                  <FieldArray label="array" name='instructions' component={renderInstructions}/>  
                 </Grid>
                 <Grid item md={10}></Grid>
                 <Grid item xs={2}>
@@ -231,5 +254,6 @@ function mapStateToProps(state) {
 
 export default (reduxForm({
   validate: validate,
-  form: 'editAsana'
+  form: 'editAsana',
+  enableReinitialize: true
 }))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));
