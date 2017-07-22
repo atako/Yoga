@@ -27,7 +27,7 @@ class ListOfPlans extends Component {
     };
 
     return(
-      <ul>
+      <ul key="key">
         {this.renderList()}
       </ul>
     );

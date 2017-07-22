@@ -79,16 +79,13 @@ class Asana extends Component {
 
   renderInstructions() {
     return _.isEmpty(this.props.asana.instructions) ? 'no description' :
-    _.map(this.props.asana.instructions, instruction => {
-      return <AsanaInstruction key={instruction.title} detail={instruction} />
+    this.props.asana.instructions.map((instruction, index) => {
+      return <AsanaInstruction key={index} detail={instruction} index={index} />
   });
 }
 
   render() {
     const classes = this.props.classes;
-
-    
-
     return (
         <div className="small-11 columns">
           <Card className={classes.card}>

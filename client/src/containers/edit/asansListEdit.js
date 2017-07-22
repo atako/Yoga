@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAsans, addAsana } from '../../actions'; 
 
+import AddIcon from 'material-ui-icons/Add';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 
 import AsanaEdit from '../../components/edit/asana';
 
-
 class AsansEditList extends Component {
-  
   componentDidMount() {
     this.props.fetchAsans();
 
@@ -32,9 +33,12 @@ class AsansEditList extends Component {
     
     
     return(
-      <div>
+      <Grid item md={10}>
         {this.renderAsans()}
-      </div>
+        <Button fab color="primary" onClick={() => this.props.history.push('/new')}>
+          <AddIcon />
+        </Button>
+      </Grid>
     );
   }
 }

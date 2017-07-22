@@ -26,38 +26,20 @@ const renderTextField = ( { input, label, meta: {touched, error}, custom }) => {
   )
 };
 
-// const renderInstructions = ( { fields, meta: { error, submitFailed } } ) => {
-//   return 'test';
-//   // console.log(fields);
-//   // return _.isEmpty(this.props.asans.instructions) ? 'no description' :
-//   // _.map(this.props.asans.instructions, instruction => {
-//   //   return <Grid key={instruction.id} className={this.props.classes.instruction} item md={12}>
-//   //         <Field
-//   //           label={`Действие ${instruction.id}`}
-//   //           name={instruction.id}
-//   //           custom={{required:false}}
-//   //           component={renderTextField}
-//   //         />
-//   //     </Grid>
-//   // });
-// }
-
 const renderInstructions = ({ fields, meta: { error, submitFailed } }) =>
   <div>
     {fields.map((instruction, index) => 
-      //{/* <li key={index}> */}
         <div key={index}>
         <Field
           name={`${instruction}.title`}
           type="text"
           component={renderTextField}
-          label='Шаг'
+          label={`${index+1}`}
         />
         <IconButton aria-label="Add to favorites" onClick={() => fields.remove(index)}>
           <DeleteIcon />
         </IconButton>
         </div>
-      //{/* </li> */}
     )}
     <div>
       <Button fab color="primary" onClick={() => fields.push({})}>
@@ -117,40 +99,6 @@ class EditAsana extends Component {
   componentDidMount() {
     this.handleInitialize();
   }
-//    console.log(field);
-//    <ul>
-//      <li>
-//        <button type="button" onClick={() => fields.push({})}>
-//          Add Member
-//        </button>
-//      </li>
-//      {this.props.asans.instructions.map((member, index) =>
-//        <li key={index}>
-//          <button
-//            type="button"
-//            title="Remove Member"
-//            onClick={() => field.remove(index)}
-//          />
-//          <h4>
-//            Member #{index + 1}
-//          </h4>
-//          <Field
-//            name={`${member}.firstName`}
-//            type="text"
-//            component={renderField}
-//            label="First Name"
-//          />
-//          <Field
-//            name={`${member}.lastName`}
-//            type="text"
-//            component={renderField}
-//            label="Last Name"
-//          />
-//          {/* <FieldArray name={`${member}.hobbies`} component={renderHobbies} /> */}
-//        </li>
-//      )}
-//    </ul>
-//  }
 
 handleInitialize() {
   const initData = this.props.getAsana(this.props.match.params.id).then(result => result.payload.data);
@@ -224,6 +172,13 @@ handleInitialize() {
                 <Grid item md={12}>
                   <FieldArray label="array" name='instructions' component={renderInstructions}/>  
                 </Grid>
+                <Grid>
+                  <div>
+                    <Button>
+                      <input type="file" onChange={this.handleUploadFile} />
+                    </Button>
+                  </div>
+                </Grid>
                 <Grid item md={10}></Grid>
                 <Grid item xs={2}>
                   <Button raised color="primary" className={classes.button} type="submit">
@@ -259,6 +214,6 @@ function mapStateToProps(state) {
 export default (reduxForm({
   validate: validate,
   form: 'editAsana',
-  enableReinitialize: true,
-  keepDirtyOnReinitialize: true
+  enableReinitialize: true
+  // keepDirtyOnReinitialize: true
 }))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));

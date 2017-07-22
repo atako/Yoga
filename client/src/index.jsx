@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import AsansList from './containers/asansList';
 import EditAsansList from './containers/edit/asansListEdit';
-// import NewAsana from './components/newAsana';
+import NewAsana from './components/edit/newAsana';
 // import FullAsana from './containers/fullAsana';
 import EditAsana from './components/edit/asanaEdit';
 import ListOfPlans from './containers/listOfPlans';
@@ -33,7 +33,7 @@ ReactDOM.render(
           {/* <Route path="/asans/:id" component={FullAsana} /> */}
           <Route path="/asana/all" component={AsansList} />
           <Route path="/plan/:id" component={PlanDetail} />
-          {/* <Route path="/new" component={NewAsana} /> */}
+          <Route path="/new" component={NewAsana} /> 
           <Route path="/edit" component={EditAsansList} /> 
           <Route path="/" component={ListOfPlans} />
         </Switch>
