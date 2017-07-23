@@ -1,4 +1,4 @@
-import { GET_PLAN_LIST, GET_PLAN_DETAIL } from '../actions';
+import { GET_PLAN_LIST, GET_PLAN_DETAIL, ADD_PLAN } from '../actions';
 
 export default function(state = {}, action) {
 switch(action.type) {

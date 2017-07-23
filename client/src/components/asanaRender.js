@@ -15,6 +15,9 @@ import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import Chip from 'material-ui/Chip';
+import Avatar from 'material-ui/Avatar';
+import Clock from 'material-ui-icons/QueryBuilder';
 
 const styleSheet = createStyleSheet('SimpleCard', theme => ({
   card: {
@@ -67,7 +70,6 @@ const styleSheet = createStyleSheet('SimpleCard', theme => ({
 }));
 
 class Asana extends Component {
-
   constructor(props) {
     super(props);
     this.state = { expanded: false }
@@ -92,6 +94,7 @@ class Asana extends Component {
             <div className={classes.cover}>
               <img src={this.props.asana.image} />
             </div>
+            {this.props.asana.duration ? <Chip avatar={<Avatar><Clock /></Avatar>} label={this.props.asana.duration} /> : null}
             <div className={classes.details}>
               <Typography type="headline" component="h2">
                 {this.props.asana.title}

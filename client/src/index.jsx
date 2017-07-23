@@ -11,6 +11,7 @@ import NewAsana from './components/edit/newAsana';
 import EditAsana from './components/edit/asanaEdit';
 import ListOfPlans from './containers/listOfPlans';
 import PlanDetail from './containers/detailPlan';
+import PlanNew from './containers/edit/planNew';
 
 import MenuUser from './components/menuUser';
 import reducers from './reducers';
@@ -32,6 +33,7 @@ ReactDOM.render(
            <Route path="/asans/edit/:id" component={EditAsana} /> 
           {/* <Route path="/asans/:id" component={FullAsana} /> */}
           <Route path="/asana/all" component={AsansList} />
+          <Route path="/plan/new" component={PlanNew} />
           <Route path="/plan/:id" component={PlanDetail} />
           <Route path="/new" component={NewAsana} /> 
           <Route path="/edit" component={EditAsansList} /> 

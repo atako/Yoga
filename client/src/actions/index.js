@@ -9,6 +9,7 @@ export const GET_ASANA = 'get_asana';
 export const UPDATE_ASANA = 'update_asana';
 export const GET_PLAN_LIST = 'get_plan_list';
 export const GET_PLAN_DETAIL = 'get_plan_detail';
+export const ADD_PLAN = 'add_plan';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
@@ -76,6 +77,16 @@ export function getPlanDetail(id) {
   return {
     type: GET_PLAN_DETAIL,
     payload: request
+  };
+}
+
+export function addPlan(values, callback) {
+  const request = axios.post(`${ROOT_URL}/plan`, values)
+    .then(() => callback());
+
+  return {
+    type: ADD_PLAN,
+    payload: request 
   };
 }
 

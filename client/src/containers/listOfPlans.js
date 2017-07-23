@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { getPlanList } from '../actions';
 import { Link } from 'react-router-dom';
 
+import AddIcon from 'material-ui-icons/Add';
+import Button from 'material-ui/Button';
+
+
 class ListOfPlans extends Component {
   
   componentDidMount() {
@@ -29,6 +33,9 @@ class ListOfPlans extends Component {
     return(
       <ul key="key">
         {this.renderList()}
+        <Button fab color="primary" onClick={() => this.props.history.push('/plan/new')}>
+          <AddIcon />
+        </Button>
       </ul>
     );
   }
