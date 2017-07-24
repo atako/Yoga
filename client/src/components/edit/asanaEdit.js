@@ -106,8 +106,9 @@ handleInitialize() {
 }
   
   onSubmit(values) {
+    console.log(values);
     this.props.updateAsana(this.props.asans._id, values, () => {
-      this.props.history.push(`/asana/all`);
+      this.props.history.push(`/edit`);
     });
   }
 
@@ -213,7 +214,7 @@ function mapStateToProps(state) {
 
 export default (reduxForm({
   validate: validate,
-  form: 'editAsana',
-  enableReinitialize: true
+  form: 'editAsana'
+  // enableReinitialize: true
   // keepDirtyOnReinitialize: true
 }))(connect(mapStateToProps, { getAsana, updateAsana })(withStyles(styleSheet)(EditAsana)));

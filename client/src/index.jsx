@@ -19,7 +19,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import promise from 'redux-promise';
 import logger from 'redux-logger';
 
-const middleware = [ promise ];
+const middleware = [ promise, logger ];
 // const createStoreWithMiddleware = applyMiddleware(logger, promise)(createStore);
 
 ReactDOM.render(
