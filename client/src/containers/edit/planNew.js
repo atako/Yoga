@@ -39,8 +39,10 @@ const renderInstructions = ({ fields, meta: { error, submitFailed }, custom }) =
                 <option value="#00ff00">Green</option>
                 <option value="#0000ff">Blue</option> */}
               </Field>
-              
-              <IconButton aria-label="Add to favorites" onClick={() => fields.remove(index)}>
+
+
+              {/* this function removes only listasans */}
+              <IconButton aria-label="Add to favorites" onClick={() => fields.remove(index)}> 
                 <DeleteIcon />
               </IconButton>
             </div>
@@ -105,18 +107,8 @@ class EditAsana extends Component {
   componentDidMount() {
     this.props.fetchAsans()
   }
-// onSubmit(values) {
-//   this.props.addAsana(values, () => {
-//     this.props.history.push('/');
-//   });
-// }
+
   onSubmit(values) {
-    delete values.listasans;
-    const asansForSend = [];
-    values.asans.map(value => asansForSend.push(value));
-    delete values.asans;
-    values.asans = asansForSend;
-    // console.log(values);
     this.props.addPlan(values, () => {
       this.props.history.push(`/`);
     });
@@ -143,7 +135,7 @@ class EditAsana extends Component {
                 <Grid item md={2}>
                 </Grid>
                 <Grid item md={12}>
-                  <FieldArray label="array" name='listasans' custom={ this.props.asans } component={renderInstructions}/>  
+                  <FieldArray label="array" name='asans' custom={ this.props.asans } component={renderInstructions}/>  
                 </Grid>
                 
                 <Grid item md={6}></Grid>
