@@ -9,9 +9,12 @@
   "author": "Dmitry Ryumkin (riumkin@gmail.com)",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.88.0",
     "body-parser": "^1.17.2",
     "mocha": "^3.4.2",
     "mongoose": "^4.11.0",
-    "nodemon": "^1.11.0"
+    "multer": "^1.3.0",
+    "nodemon": "^1.11.0",
+    "shortid": "^2.2.8"
   }
 }

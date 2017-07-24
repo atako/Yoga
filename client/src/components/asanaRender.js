@@ -92,7 +92,7 @@ class Asana extends Component {
         <div className="small-11 columns">
           <Card className={classes.card}>
             <div className={classes.cover}>
-              <img src={this.props.asana.image} />
+              <img src={this.props.asana.image} width="200" heigth="200" />
             </div>
             {this.props.asana.duration ? <Chip avatar={<Avatar><Clock /></Avatar>} label={this.props.asana.duration} /> : null}
             <div className={classes.details}>

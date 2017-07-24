@@ -1,4 +1,16 @@
+const AWS = require('aws-sdk');
+const shortid = require('shortid');
+
 const Asana = require('../models/asana');
+
+
+const s3 = new AWS.S3();
+s3.config.update(
+  {
+    accessKeyId: '',
+    secretAccessKey: '',
+    // region: 'eu-central-1',
+  });
 
 module.exports = {
   greeting(req, res) {
@@ -34,6 +46,23 @@ module.exports = {
   getAsana(req, res) {
     Asana.findById(req.params.id)
       .then(asana => res.send(asana))
+  },
+
+  uploadImage(req, res) {
+    const name = shortid.generate();
+    s3.putObject({
+      Bucket: 'img.yoga.indiana108.ru',
+      Key: `${name}.jpg`, 
+      Body: req.file.buffer,
+      ACL: 'public-read', // your permisions  
+    }, (err) => { 
+      if (err) {
+        console.log(err);
+        return res.status(400).send(err)
+      };
+      
+      res.send(name);
+    })
   }
       
 

@@ -81,7 +81,7 @@ class EditAsana extends Component {
         <Grid item md={9}>
           <Card className={classes.card}>
             <div className={classes.cover}>
-              <img src={this.props.asana.image} />
+              <img src={this.props.asana.image} width="200" height="200"/>
             </div>
             <div className={classes.details}>
               <Typography type="headline" component="h2">

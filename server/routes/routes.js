@@ -1,5 +1,13 @@
+const multer = require('multer');
+
 const AsanasController = require('../controllers/asanas_controller');
 const PlanController = require('../controllers/plans_controller');
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  // file size limitation in bytes
+  limits: { fileSize: 52428800 },
+});
 
 module.exports = (app) => {
   app.get('/api', AsanasController.greeting);
@@ -12,4 +20,5 @@ module.exports = (app) => {
   app.post('/api/plan', PlanController.createPlan);
   app.get('/api/plan/:id', PlanController.getPlan);
   app.post('/api/plan/:id', PlanController.updatePlan);
+  app.post('/upload', upload.single('theseNamesMustMatch'), AsanasController.uploadImage);
 };

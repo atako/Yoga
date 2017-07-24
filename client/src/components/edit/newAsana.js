@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, FieldArray } from 'redux-form';
+import { Field, reduxForm, FieldArray, change } from 'redux-form';
 import PropTypes from 'prop-types';
+import Dropzone from 'react-dropzone'
+import Upload  from 'superagent';
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -107,10 +109,19 @@ class EditAsana extends Component {
 //   });
 // }
   onSubmit(values) {
-    console.log(values);
     this.props.addAsana(values, () => {
       this.props.history.push(`/edit`);
     });
+  }
+
+  onDrop (files) {
+    Upload.post('http://localhost:3000/upload')
+    .attach('theseNamesMustMatch', files[0])
+    .end((err, res) => {
+      if (err) console.log(err);
+      this.props.change('image', `http://img.yoga.indiana108.ru/${res.text}.jpg`);
+      // console.log(res);
+    })
   }
 
   render() {
@@ -169,10 +180,15 @@ class EditAsana extends Component {
                   <FieldArray label="array" name='instructions' component={renderInstructions}/>  
                 </Grid>
                 <Grid>
+                <IconButton aria-label="Add to favorites" onClick={() => this.props.change('image', 'test')}>
+                  <DeleteIcon />
+                </IconButton>
+                </Grid>
+                <Grid>
                   <div>
-                    <Button>
-                      <input type="file" onChange={this.handleUploadFile} />
-                    </Button>
+                    <Dropzone onDrop={this.onDrop.bind(this)} multiple={false} >
+                      <div>Try dropping a file here, or click to select a file to upload.</div>
+                    </Dropzone>
                   </div>
                 </Grid>
                 <Grid item md={10}></Grid>

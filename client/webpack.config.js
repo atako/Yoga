@@ -1,5 +1,7 @@
 const path = require('path');
 
+
+
 module.exports = {
     entry: './src/index.jsx',
 
@@ -37,4 +39,5 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '*']
     }
+    
 };
