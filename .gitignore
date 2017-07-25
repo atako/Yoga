@@ -2,7 +2,8 @@
 logs
 *.log
 npm-debug.log*
-
+package-lock.json
+.gitignore
 
 # Runtime data
 pids

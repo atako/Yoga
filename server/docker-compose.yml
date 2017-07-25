@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+
+  node:
+    image: node:latest
+    ports:
+      - 3000:3050
+    stdin_open: true
+    tty: true
+    volumes:
+      - /vagrant_data:/data
+
+  mongo:
+    image: mongo
+    ports: 
+      - 27017:27017
+    logging: 
+      driver: "none"
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+
+
+volumes:
+  mongo_data:
+  mongo_config:
