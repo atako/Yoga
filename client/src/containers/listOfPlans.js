@@ -16,7 +16,7 @@ class ListOfPlans extends Component {
 
   renderList() {
       return _.map(this.props.plans, value => {
-        return <li key={value._id}><Link to={`/plan/${value._id}`}>{value.title}</Link></li>
+        return <li key={value._id}><Link to={`/plan/${value.alias}`}>{value.title}</Link></li>
       });
 
   }

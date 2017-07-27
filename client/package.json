@@ -18,6 +18,7 @@
     "redux": "^3.7.0",
     "redux-form": "latest",
     "redux-promise": "^0.5.3",
+    "semantic-ui-react": "^0.71.2",
     "superagent": "^3.5.2",
     "typeface-roboto": "0.0.29"
   },

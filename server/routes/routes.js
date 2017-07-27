@@ -21,4 +21,5 @@ module.exports = (app) => {
   app.get('/api/plan/:id', PlanController.getPlan);
   app.post('/api/plan/:id', PlanController.updatePlan);
   app.post('/upload', upload.single('theseNamesMustMatch'), AsanasController.uploadImage);
+  app.get('/api/findplan/:id', PlanController.findPlan);
 };

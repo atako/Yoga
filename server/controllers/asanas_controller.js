@@ -3,13 +3,14 @@ const shortid = require('shortid');
 
 const Asana = require('../models/asana');
 
+const keys = require('./keys.json');
 
 const s3 = new AWS.S3();
+// s3.config.loadFromPath('./creditinals');
 s3.config.update(
   {
-    accessKeyId: '',
-    secretAccessKey: '',
-    // region: 'eu-central-1',
+    "accessKeyId": keys.accessKeyId,
+    "secretAccessKey": keys.secretAccessKey
   });
 
 module.exports = {

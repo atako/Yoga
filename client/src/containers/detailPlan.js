@@ -11,6 +11,7 @@ componentDidMount() {
 }
 
 renderAsans() {
+  console.log(this.props.plans);
   return _.map(this.props.plans.asans, asana => {
     return <AsanaRender key={asana._id} asana={asana} />
   });

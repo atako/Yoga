@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const PlanSchema = new Schema({
   title: String,
+  alias: String,
   asans: [{ 
     type: Schema.Types.ObjectId,
     ref: 'asana'

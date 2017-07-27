@@ -109,6 +109,7 @@ class EditAsana extends Component {
   }
 
   onSubmit(values) {
+    values.alias = _.snakeCase(values.title);
     this.props.addPlan(values, () => {
       this.props.history.push(`/`);
     });

@@ -19,6 +19,12 @@ module.exports = {
       .then(plan => res.send(plan));
   },
 
+  findPlan(req, res) {
+    Plan.find({alias: req.params.id})
+      .populate('asans')
+      .then(plan => res.send(plan[0]));
+  },
+
   updatePlan(req, res) {
     const asans = req.body;
 

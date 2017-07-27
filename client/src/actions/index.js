@@ -72,7 +72,7 @@ export function getPlanList() {
 }
 
 export function getPlanDetail(id) {
-  const request = axios.get(`${ROOT_URL}/plan/${id}`);
+  const request = axios.get(`${ROOT_URL}/findplan/${id}`);
 
   return {
     type: GET_PLAN_DETAIL,

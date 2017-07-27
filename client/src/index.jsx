@@ -12,6 +12,7 @@ import EditAsana from './components/edit/asanaEdit';
 import ListOfPlans from './containers/listOfPlans';
 import PlanDetail from './containers/detailPlan';
 import PlanNew from './containers/edit/planNew';
+import Landing from './components/landing';
 
 import MenuUser from './components/menuUser';
 import reducers from './reducers';
@@ -19,7 +20,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import promise from 'redux-promise';
 import logger from 'redux-logger';
 
-const middleware = [ promise];
+const middleware = [ promise ];
 // const createStoreWithMiddleware = applyMiddleware(logger, promise)(createStore);
 
 ReactDOM.render(
@@ -27,7 +28,6 @@ ReactDOM.render(
     <BrowserRouter>
     <MuiThemeProvider>
       <div>
-        <MenuUser />
         <Switch>
           {/* <Route path='/new' component={NewAsana} /> */}
            <Route path="/asans/edit/:id" component={EditAsana} /> 
@@ -35,9 +35,10 @@ ReactDOM.render(
           <Route path="/asana/all" component={AsansList} />
           <Route path="/plan/new" component={PlanNew} />
           <Route path="/plan/:id" component={PlanDetail} />
+          <Route path="/plan" component={ListOfPlans} />
           <Route path="/new" component={NewAsana} /> 
           <Route path="/edit" component={EditAsansList} /> 
-          <Route path="/" component={ListOfPlans} />
+          <Route path="/" component={Landing} />
         </Switch>
       </div>
       </MuiThemeProvider>
