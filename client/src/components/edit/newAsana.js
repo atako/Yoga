@@ -16,6 +16,8 @@ import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import AddIcon from 'material-ui-icons/Add';
 
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+
 
 import { addAsana } from '../../actions';
 
@@ -103,22 +105,22 @@ const styleSheet = createStyleSheet('EditAsana', theme => ({
 }));
 
 class EditAsana extends Component {
-// onSubmit(values) {
-//   this.props.addAsana(values, () => {
-//     this.props.history.push('/');
-//   });
-// }
+
+
+
   onSubmit(values) {
     this.props.addAsana(values, () => {
       this.props.history.push(`/edit`);
     });
   }
 
+
   onDrop (files) {
     Upload.post('http://localhost:3000/upload')
     .attach('theseNamesMustMatch', files[0])
     .end((err, res) => {
       if (err) console.log(err);
+      loaderstate = false;
       this.props.change('image', `http://img.yoga.indiana108.ru/${res.text}.jpg`);
       // console.log(res);
     })
@@ -127,12 +129,14 @@ class EditAsana extends Component {
   render() {
     const classes = this.props.classes;
     const { handleSubmit } = this.props;
+    
 
     return(
       <div className={classes.wrap}>
         <div className={classes.container}>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Paper className={classes.paper} elevation={4}>
+            
               <Grid container gutter={24}>
                 <Grid item xs={12} md={12}>
                   <Field 
@@ -201,6 +205,8 @@ class EditAsana extends Component {
             </Paper>   
           </form>
         </div>
+        <Segment>
+        </Segment>
       </div>
     )}
 }

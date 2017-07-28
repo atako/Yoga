@@ -16,16 +16,10 @@ import {
 const FixedMenu = () => (
   <Menu fixed='top' size='large'>
     <Container>
-      <Menu.Item as='a' active>Home</Menu.Item>
+      <Menu.Item as='a' active>Homee</Menu.Item>
       <Menu.Item as='a'>Plan</Menu.Item>
       <Menu.Item as='a'>About</Menu.Item>
-      <Menu.Menu position='right'>
-        <Menu.Item className='item'>
-          <Button as='a'>Log in</Button>
-        </Menu.Item>
-        <Menu.Item>
-          <Button as='a' primary>Sign Up</Button>
-        </Menu.Item>
+      <Menu.Menu position='left'>
       </Menu.Menu>
     </Container>
   </Menu>
@@ -56,14 +50,10 @@ export default class Landing extends Component {
           vertical
         >
           <Container>
-            <Menu inverted pointing secondary size='large'>
+            <Menu inverted pointing secondary size='large' compact>
               <Menu.Item as='p' active>Home</Menu.Item>
               <Menu.Item as='a'>Plan</Menu.Item>
               <Menu.Item as='a'>About</Menu.Item>
-              <Menu.Item position='right'>
-                <Button as='a' inverted>Log in</Button>
-                <Button as='a' inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-              </Menu.Item>
             </Menu>
           </Container>
 
@@ -80,7 +70,7 @@ export default class Landing extends Component {
               inverted
               style={{ fontSize: '1.7em', fontWeight: 'normal' }}
             />
-            <Button primary size='huge'>
+            <Button primary size='huge' onClick={() => this.props.history.push('/plan/week_3')}>
               Get Started
               <Icon name='right arrow' />
             </Button>
@@ -106,7 +96,7 @@ export default class Landing extends Component {
               <Image
                 bordered
                 size='large'
-                src='/assets/images/wireframe/white-image.png'
+                src='https://react.semantic-ui.com/assets/images/wireframe/white-image.png'
               />
             </Grid.Column>
           </Grid.Row>
@@ -127,7 +117,7 @@ export default class Landing extends Component {
             <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
               <Header as='h3' style={{ fontSize: '2em' }}>"I shouldn't have gone with their competitor."</Header>
               <p style={{ fontSize: '1.33em' }}>
-                <Image avatar src='/assets/images/avatar/large/nan.jpg' />
+                <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/large/nan.jpg' />
                 <b>Nan</b> Chief Fun Officer Acme Toys
               </p>
             </Grid.Column>

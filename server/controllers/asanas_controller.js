@@ -3,7 +3,7 @@ const shortid = require('shortid');
 
 const Asana = require('../models/asana');
 
-const keys = require('./keys.json');
+const keys = require('../config/keys.json');
 
 const s3 = new AWS.S3();
 // s3.config.loadFromPath('./creditinals');
