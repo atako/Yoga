@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Button,
   Container,
@@ -10,7 +10,7 @@ import {
   List,
   Menu,
   Segment,
-  Visibility,
+  Visibility
 } from 'semantic-ui-react'
 
 const FixedMenu = () => (
@@ -37,7 +37,7 @@ export default class Landing extends Component {
     return(
       <div>
       {/* { visible ? <FixedMenu /> : null } */}
-
+      
       <Visibility
         onBottomPassed={this.showFixedMenu}
         onBottomVisible={this.hideFixedMenu}
@@ -46,35 +46,69 @@ export default class Landing extends Component {
         <Segment
           inverted
           textAlign='center'
-          style={{ minHeight: 700, padding: '1em 0em' }}
+          style={{ minHeight: 900, padding: '1em 0em', backgroundColor: "#8A72B6", textAlign: 'left' }}
           vertical
         >
+        <Grid>
+        <Grid.Row>
+          <Grid.Column width={3}>
+          </Grid.Column>
+          <Grid.Column width={9}></Grid.Column>
+          <Grid.Column width={4}>
           <Container>
-            <Menu inverted pointing secondary size='large' compact>
+            <Menu inverted text size='large' textAlign='center' compact>
               <Menu.Item as='p' active>Home</Menu.Item>
-              <Menu.Item as='a'>Plan</Menu.Item>
+              <Menu.Item as='a' onClick={() => this.props.history.push('/plan/')}>Plan</Menu.Item>
               <Menu.Item as='a'>About</Menu.Item>
             </Menu>
           </Container>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column width={2}></Grid.Column>
+        <Grid.Column width={10}>
+        <Container text>
+          <Header
+            className='landingHeader'
+            as='h1'
+            content='Online Yoga Trainer'
+            inverted
+            style={{fontSize: '6em', marginBottom: 0, marginTop: '1em' }}
+          />
+          <Header
+            className='landingHeader'
+            as='h2'
+            content='Based on book “Light on Yoga: Yoga Dipika” of B. K. S. Iyengar'
+            inverted
+            style={{ fontSize: '1.7em', fontWeight: 'normal' }}
 
-          <Container text>
-            <Header
-              as='h1'
-              content='Start practice yoga'
-              inverted
-              style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '3em' }}
-            />
-            <Header
-              as='h2'
-              content='Free and without registration'
-              inverted
-              style={{ fontSize: '1.7em', fontWeight: 'normal' }}
-            />
-            <Button primary size='huge' onClick={() => this.props.history.push('/plan/week_3')}>
-              Get Started
-              <Icon name='right arrow' />
-            </Button>
-          </Container>
+          />
+          
+        </Container>
+        </Grid.Column>
+        <Grid.Column width={4}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={2}>
+
+          </Grid.Column>
+          <Grid.Column width={10}>
+          <Button
+            primary size='huge' 
+            style={{ fontFamily: 'Open Sans', fontWeight: 'normal', marginBottom: 0, marginTop: '1em', marginLeft: '4em' }}
+            onClick={() => this.props.history.push('/plan/first_class')}>
+            Start Your First Lesson
+          <Icon name='right arrow' />
+          </Button>
+          </Grid.Column>
+          <Grid.Column width={4}>
+
+          </Grid.Column>
+        </Grid.Row>
+        </Grid>
+          
+        
+          
         </Segment>
       </Visibility>
 

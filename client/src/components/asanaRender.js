@@ -136,9 +136,8 @@ class Asana extends Component {
                     <Icon name='right chevron' />
                     {/*wait  */}
                   </Button>
-                  <Label color='blue' size='large' color='green' icon>
-                    <Icon name='wait'></Icon>
-                  Duration
+                  <Label color='blue' size='large' color='green'>
+                    Duration
                   <Label.Detail>{this.props.asana.duration}</Label.Detail>
                 </Label>
                 </Item.Extra>
