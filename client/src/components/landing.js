@@ -10,7 +10,8 @@ import {
   List,
   Menu,
   Segment,
-  Visibility
+  Visibility,
+  Item
 } from 'semantic-ui-react'
 
 const FixedMenu = () => (
@@ -45,70 +46,69 @@ export default class Landing extends Component {
       >
         <Segment
           inverted
-          textAlign='center'
           style={{ minHeight: 900, padding: '1em 0em', backgroundColor: "#8A72B6", textAlign: 'left' }}
           vertical
         >
         <Grid>
         <Grid.Row>
-          <Grid.Column width={3}>
+          <Grid.Column width={5}>
+            <div
+              style ={{ marginLeft: '4em', marginTop: '1em', marginBottom: '4em'}}
+              >
+              <div
+                style={{ display: 'inline-block', fontSize: '2em', color: '#ffffff'}}>
+                  <a style={{ color: '#ffffff' }} href='https://onlineyoga.space'>online</a></div>
+              <div
+                style ={{ display: 'inline-block', fontSize: '2em', color: '#FFC80A'}}>
+                <a style={{ color: '#ffc80a' }} href='https://onlineyoga.space'>yoga.space</a></div>
+            </div>
           </Grid.Column>
-          <Grid.Column width={9}></Grid.Column>
+          <Grid.Column width={7}></Grid.Column>
           <Grid.Column width={4}>
           <Container>
-            <Menu inverted text size='large' textAlign='center' compact>
-              <Menu.Item as='p' active>Home</Menu.Item>
-              <Menu.Item as='a' onClick={() => this.props.history.push('/plan/')}>Plan</Menu.Item>
-              <Menu.Item as='a'>About</Menu.Item>
+            <Menu inverted text size='large' compact>
+              <Menu.Item as='p' style={{ fontFamily: 'Lato:300' }} active>home</Menu.Item>
+              <Menu.Item as='a' onClick={() => this.props.history.push('/plan/')}>plan</Menu.Item>
+              <Menu.Item as='a'>about</Menu.Item>
             </Menu>
           </Container>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-        <Grid.Column width={2}></Grid.Column>
-        <Grid.Column width={10}>
-        <Container text>
-          <Header
-            className='landingHeader'
-            as='h1'
-            content='Online Yoga Trainer'
-            inverted
-            style={{fontSize: '6em', marginBottom: 0, marginTop: '1em' }}
-          />
-          <Header
-            className='landingHeader'
-            as='h2'
-            content='Based on book “Light on Yoga: Yoga Dipika” of B. K. S. Iyengar'
-            inverted
-            style={{ fontSize: '1.7em', fontWeight: 'normal' }}
-
-          />
-          
-        </Container>
-        </Grid.Column>
-        <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={10}>
+          <div style={{ fontFamily: 'Open Sans: 300', marginTop: '2em', marginLeft: '0.5em' }}>33 WEEKS TRAINIG PLAN</div>
+          </Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={2}>
-
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={8}>
+          <Container text>
+            <div
+              style={{ fontFamily: 'Open Sans', fontSize: '6em', lineHeight: '1em' }}>
+              Online Yoga Trainer
+            </div>
+            <Button
+              primary size='large' 
+              style={{marginBottom: 0, marginTop: '5em', backgroundColor: '#FFC80A' }}
+              onClick={() => this.props.history.push('/plan/first_class')}>
+                <div style={{ color: '#000000',  fontSize: '1.2em', fontFamily: 'Open Sans:300' }}>Start Your First Lesson</div>
+              
+              </Button>
+          </Container>
           </Grid.Column>
-          <Grid.Column width={10}>
-          <Button
-            primary size='huge' 
-            style={{ fontFamily: 'Open Sans', fontWeight: 'normal', marginBottom: 0, marginTop: '1em', marginLeft: '4em' }}
-            onClick={() => this.props.history.push('/plan/first_class')}>
-            Start Your First Lesson
-          <Icon name='right arrow' />
-          </Button>
+          <Grid.Column width={3}>
+          <div style={{ marginTop: '0em', fontSize: '1.1em', lineHeight: '1.7em' }}>
+            <div><a href="https://www.amazon.com/Light-Yoga-B-K-Iyengar/dp/0805210318"><img style={{ height: '250px' }} src="/img/book.jpg"></img></a></div>
+            <div style={{ fontFamily: 'Open Sans: 300' }}>Based on book</div>
+            <div style={{ fontFamily: 'Open Sans: 300' }}>“Light on Yoga: Yoga Dipika”</div>
+            <div style={{ fontFamily: 'Open Sans: 300' }}>of B. K. S. Iyengar</div>
+          </div>
           </Grid.Column>
-          <Grid.Column width={4}>
-
-          </Grid.Column>
+          <Grid.Column width={3}></Grid.Column>
         </Grid.Row>
         </Grid>
-          
-        
-          
         </Segment>
       </Visibility>
 

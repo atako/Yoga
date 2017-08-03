@@ -11,6 +11,8 @@ pids
 *.seed
 creditinals.json
 keys.json
+config.js
+config
 
 #Semantic
 client/public/semantic/dist
