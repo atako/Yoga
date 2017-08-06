@@ -7,18 +7,7 @@ import _ from 'lodash';
 import AsanaInstruction from './asanaInstruction';
 
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-// import Card, { CardActions, CardContent, CardMedia, CardHeader } from 'material-ui/Card';
-// import Collapse from 'material-ui/transitions/Collapse';
-// import Button from 'material-ui/Button';
-// import Typography from 'material-ui/Typography';
 import PropTypes from 'prop-types';
-// import IconButton from 'material-ui/IconButton';
-// import PlayArrowIcon from 'material-ui-icons/PlayArrow';
-// import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-// import Chip from 'material-ui/Chip';
-// import Avatar from 'material-ui/Avatar';
-// import Clock from 'material-ui-icons/QueryBuilder';
-
 import { Button, Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
 
 const styleSheet = createStyleSheet('SimpleCard', theme => ({
@@ -88,58 +77,25 @@ class Asana extends Component {
   });
 }
 
+renderDuration() {
+    return (
+      <Label color='blue' size='large' color='green'>
+        Duration
+      <Label.Detail>{this.props.asana.duration}</Label.Detail>
+      </Label>
+)
+}
+
   render() {
     const classes = this.props.classes;
     return (
-
-        // <div className="small-11 columns">
-        //   <Card className={classes.card}>
-        //     <div className={classes.cover}>
-        //       <img src={this.props.asana.image} width="200" heigth="200" />
-        //     </div>
-        //     {this.props.asana.duration ? <Chip avatar={<Avatar><Clock /></Avatar>} label={this.props.asana.duration} /> : null}
-        //     <div className={classes.details}>
-        //       <Typography type="headline" component="h2">
-        //         {this.props.asana.title}
-        //       </Typography>
-        //       <Typography component="p">
-        //         {this.props.asana.description}
-        //       </Typography>
-        //     </div>
-        //     <CardActions disableActionSpacing>
-        //       <IconButton
-        //         className={classnames(classes.expand, {
-        //           [classes.expandOpen]: this.state.expanded,
-        //         })}
-        //         onClick={this.handleExpandClick.bind(this)}
-        //         aria-expanded={this.state.expanded}
-        //         aria-label="Show more"
-        //         >
-        //         <ExpandMoreIcon />
-        //         </IconButton> 
-        //       </CardActions>
-        //       <Collapse in={this.state.expanded} transitionDuration="auto" unmountOnExit>
-        //       <Typography className={classes.instructions}>
-        //         {this.renderInstructions()}
-        //       </Typography>
-        //       </Collapse>
-        //   </Card>
-        // </div>
-            <Item>
+            <Item style={{ backgroundColor: "#ffffff"}}>
               <Item.Image src={this.props.asana.image} fluid/>
               <Item.Content>
-                <Item.Header as='a'>{this.props.asana.title}</Item.Header>
+                <Item.Header>{this.props.asana.title}</Item.Header>
                 <Item.Description>{this.props.asana.description}</Item.Description>
                 <Item.Extra>
-                  <Button primary attached='bottom' floated='right'>
-                    Buy tickets
-                    <Icon name='right chevron' />
-                    {/*wait  */}
-                  </Button>
-                  <Label color='blue' size='large' color='green'>
-                    Duration
-                  <Label.Detail>{this.props.asana.duration}</Label.Detail>
-                </Label>
+                  {this.props.asana.duration !== null ? this.renderDuration : null }
                 </Item.Extra>
               </Item.Content>
             </Item>
