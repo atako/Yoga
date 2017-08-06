@@ -87,13 +87,13 @@ export default class Landing extends Component {
           <Container text>
             <div
               style={{ fontFamily: 'Open Sans', fontSize: '6em', lineHeight: '1em' }}>
-              Online Yoga Trainer
+              Online Yoga Course
             </div>
             <Button
               primary size='large' 
               style={{marginBottom: 0, marginTop: '5em', backgroundColor: '#FFC80A' }}
               onClick={() => this.props.history.push('/plan/first_class')}>
-                <div style={{ color: '#000000',  fontSize: '1.2em', fontFamily: 'Open Sans:300' }}>Start Your First Lesson</div>
+                <div style={{ color: '#000000',  fontSize: '1.2em', fontFamily: 'Open Sans:300' }}>Start Your First Practice</div>
               
               </Button>
           </Container>

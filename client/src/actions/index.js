@@ -11,7 +11,7 @@ export const GET_PLAN_LIST = 'get_plan_list';
 export const GET_PLAN_DETAIL = 'get_plan_detail';
 export const ADD_PLAN = 'add_plan';
 
-const ROOT_URL = 'http://localhost:3000/api';
+const ROOT_URL = 'http://api.alpha.onlineyoga.space/api';
 
 export function fetchAsans() {
   const request = axios.get(`${ROOT_URL}/asans`);
