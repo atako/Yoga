@@ -2,13 +2,15 @@
   "name": "redux-intro",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base ./public",
+    "start": "webpack-dev-server --host 0.0.0.0 --inline --content-base ./public",
     "build": "/src/scripts/build.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "compression-webpack-plugin": "^1.0.0",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-alpha.21",
+    "material-ui-icons": "^1.0.0-alpha.19",
     "prop-types": "^15.5.10",
     "react": "latest",
     "react-dom": "latest",
@@ -17,6 +19,7 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
     "redux-form": "latest",
+    "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "semantic-ui-react": "^0.71.2",
     "superagent": "^3.5.2",
